@@ -12,7 +12,7 @@ import java.time.LocalDate as jtLocalDate
 
 
 public actual class LocalDate internal constructor(internal val value: jtLocalDate) : Comparable<LocalDate> {
-    actual companion object {
+    public actual companion object {
         public actual fun parse(isoString: String): LocalDate = try {
             jtLocalDate.parse(isoString).let(::LocalDate)
         } catch (e: DateTimeParseException) {

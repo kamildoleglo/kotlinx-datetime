@@ -6,7 +6,7 @@
 package kotlinx.datetime
 
 public expect class LocalDate : Comparable<LocalDate> {
-    companion object {
+    public companion object {
         /**
          * Parses a string that represents a date in ISO-8601 format
          * and returns the parsed [LocalDate] value.
@@ -108,7 +108,7 @@ public fun LocalDate.atTime(hour: Int, minute: Int, second: Int = 0, nanosecond:
  * @throws DateTimeArithmeticException if this value or the results of intermediate computations are too large to fit in
  * [LocalDate].
  */
-expect operator fun LocalDate.plus(period: DatePeriod): LocalDate
+public expect operator fun LocalDate.plus(period: DatePeriod): LocalDate
 
 /**
  * Returns a date that is the result of subtracting components of [DatePeriod] from this date. The components are
@@ -141,7 +141,7 @@ public operator fun LocalDate.minus(period: DatePeriod): LocalDate =
  *
  * @see LocalDate.minus
  */
-expect fun LocalDate.periodUntil(other: LocalDate): DatePeriod
+public expect fun LocalDate.periodUntil(other: LocalDate): DatePeriod
 
 /**
  * Returns a [DatePeriod] representing the difference between [other] and `this` dates.
@@ -157,7 +157,7 @@ expect fun LocalDate.periodUntil(other: LocalDate): DatePeriod
  *
  * @see LocalDate.periodUntil
  */
-operator fun LocalDate.minus(other: LocalDate): DatePeriod = other.periodUntil(this)
+public operator fun LocalDate.minus(other: LocalDate): DatePeriod = other.periodUntil(this)
 
 /**
  * Returns the whole number of the specified date [units][unit] between `this` and [other] dates.

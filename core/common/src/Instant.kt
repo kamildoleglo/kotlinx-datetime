@@ -92,16 +92,16 @@ public expect class Instant : Comparable<Instant> {
     public override fun toString(): String
 
 
-    companion object {
+    public companion object {
         @Deprecated("Use Clock.System.now() instead", ReplaceWith("Clock.System.now()", "kotlinx.datetime.Clock"), level = DeprecationLevel.ERROR)
-        fun now(): Instant
+        public fun now(): Instant
 
         /**
          * Returns an [Instant] that is [epochMilliseconds] number of milliseconds from the epoch instant `1970-01-01T00:00:00Z`.
          *
          * The return value is clamped to the platform-specific boundaries for [Instant] if the result exceeds them.
          */
-        fun fromEpochMilliseconds(epochMilliseconds: Long): Instant
+        public fun fromEpochMilliseconds(epochMilliseconds: Long): Instant
 
         /**
          * Returns an [Instant] that is the [epochSeconds] number of seconds from the epoch instant `1970-01-01T00:00:00Z`
@@ -109,7 +109,7 @@ public expect class Instant : Comparable<Instant> {
          *
          * The return value is clamped to the platform-specific boundaries for [Instant] if the result exceeds them.
          */
-        fun fromEpochSeconds(epochSeconds: Long, nanosecondAdjustment: Long = 0): Instant
+        public fun fromEpochSeconds(epochSeconds: Long, nanosecondAdjustment: Long = 0): Instant
 
         /**
          * Returns an [Instant] that is the [epochSeconds] number of seconds from the epoch instant `1970-01-01T00:00:00Z`
@@ -117,7 +117,7 @@ public expect class Instant : Comparable<Instant> {
          *
          * The return value is clamped to the platform-specific boundaries for [Instant] if the result exceeds them.
          */
-        fun fromEpochSeconds(epochSeconds: Long, nanosecondAdjustment: Int): Instant
+        public fun fromEpochSeconds(epochSeconds: Long, nanosecondAdjustment: Int): Instant
 
         /**
          * Parses a string that represents an instant in ISO-8601 format including date and time components and
@@ -130,7 +130,7 @@ public expect class Instant : Comparable<Instant> {
          *
          * @throws IllegalArgumentException if the text cannot be parsed or the boundaries of [Instant] are exceeded.
          */
-        fun parse(isoString: String): Instant
+        public fun parse(isoString: String): Instant
 
 
         /**
@@ -139,7 +139,7 @@ public expect class Instant : Comparable<Instant> {
          * All instants in the range `DISTANT_PAST..DISTANT_FUTURE` can be converted to [LocalDateTime][Instant.toLocalDateTime]
          * without exceptions on all supported platforms.
          */
-        val DISTANT_PAST: Instant // -100001-12-31T23:59:59.999999999Z
+        public val DISTANT_PAST: Instant // -100001-12-31T23:59:59.999999999Z
 
         /**
          * An instant value that is far in the future.
@@ -147,7 +147,7 @@ public expect class Instant : Comparable<Instant> {
          * All instants in the range `DISTANT_PAST..DISTANT_FUTURE` can be converted to [LocalDateTime][Instant.toLocalDateTime]
          * without exceptions on all supported platforms.
          */
-        val DISTANT_FUTURE: Instant // +100000-01-01T00:00:00Z
+        public val DISTANT_FUTURE: Instant // +100000-01-01T00:00:00Z
 
         internal val MIN: Instant
         internal val MAX: Instant
@@ -155,11 +155,11 @@ public expect class Instant : Comparable<Instant> {
 }
 
 /** Returns true if the instant is not later than [Instant.DISTANT_PAST]. */
-public val Instant.isDistantPast
+public val Instant.isDistantPast: Boolean
     get() = this <= Instant.DISTANT_PAST
 
 /** Returns true if the instant is not earlier than [Instant.DISTANT_FUTURE]. */
-public val Instant.isDistantFuture
+public val Instant.isDistantFuture: Boolean
     get() = this >= Instant.DISTANT_FUTURE
 
 /**
@@ -406,7 +406,7 @@ public expect fun Instant.plus(value: Long, unit: DateTimeUnit, timeZone: TimeZo
  *
  * @throws DateTimeArithmeticException if this value or the result is too large to fit in [LocalDateTime].
  */
-public fun Instant.minus(value: Long, unit: DateTimeUnit, timeZone: TimeZone) =
+public fun Instant.minus(value: Long, unit: DateTimeUnit, timeZone: TimeZone): Instant =
     if (value != Long.MIN_VALUE) {
         plus(-value, unit, timeZone)
     } else {
